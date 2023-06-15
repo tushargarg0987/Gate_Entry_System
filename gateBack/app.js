@@ -9,15 +9,13 @@ const passportLocalMongoose = require("passport-local-mongoose");
 const findOrCreate = require("mongoose-findorcreate");
 var nodemailer = require("nodemailer");
 
-// const md5 = require("md5")
-// const bcrypt = require("bcrypt");
-// const saltRounds = 10;
+
 
 var transporter = nodemailer.createTransport({
     service: "Gmail",
     auth: {
         user: "fortesting883@gmail.com",
-        pass: "edrwpvwtphzcapdm",
+        pass: "HIDDEN_PASSWORD",
     },
 });
 
@@ -56,7 +54,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(
     session({
-        secret: "ourLittleSecret",
+        secret: "gateEntry",
         resave: false,
         saveUninitialized: true,
         // cookie: { secure: true }
@@ -69,7 +67,6 @@ mongoose.connect("mongodb://localhost:27017/gateEntry");
 
 const userSchema = new mongoose.Schema({
     username: String,
-
     currentStatus: String,
     entry: [
         {
